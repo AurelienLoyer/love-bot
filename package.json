@@ -1,0 +1,25 @@
+{
+  "name": "love-bot",
+  "version": "1.0.0",
+  "description": "![Isaac](https://s-media-cache-ak0.pinimg.com/736x/cc/30/f8/cc30f834e67451dcd37049d0dd6800d8--old-tv-shows-love-boat.jpg)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/T3kstiil3/love-bot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/T3kstiil3/love-bot/issues"
+  },
+  "homepage": "https://github.com/T3kstiil3/love-bot#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "request": "^2.81.0"
+  }
+}
