@@ -6,17 +6,18 @@ const config = require('./config');
 
 app.use(bodyParser.json());
 
-app.post('/pullrequest', function (req, res) {
-    const owner = req.body.repository.owner.login
+app.post('/pullrequest', (req, res) => {
+    const owner = req.body.repository.owner.login;
     const repo = req.body.repository.name;
     const sha = req.body.pull_request.head.sha;
-    const context = 'LoveBot/PR/BranchName'
+    const context = 'LoveBot/PR/BranchName';
     let state = 'success';
     let description = 'You have selected the right branch';
-    
-    if(req.body.pull_request.base.ref !== config.BASE_PULLREQUEST_BRANCH){
+
+    if (req.body.pull_request.base.ref !== config.BASE_PULLREQUEST_BRANCH) {
         state = 'error';
-        description = `You should use the ${config.BASE_PULLREQUEST_BRANCH} as the base branch`;
+        description = `You should use the 
+                ${config.BASE_PULLREQUEST_BRANCH} as the base branch`;
     }
 
     utils.updateStatus(owner, repo, sha, state, description, context);
@@ -24,6 +25,6 @@ app.post('/pullrequest', function (req, res) {
 });
 
 
-app.listen(8080, function () {
-  console.log('Example app listening on port 3000!');
+app.listen(8080, () => {
+  console.log('Example app listening on port 8080!');
 });

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+echo 'Running ESLint';
+
+npm run lint
+
+if [ $? -ne 0 ]; then
+    echo "We found files with error"
+    exit 1;
+else
+    echo "ESLint OK"
+    exit 0;
+fi
