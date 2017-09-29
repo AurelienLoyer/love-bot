@@ -5,3 +5,33 @@
 :coderay-css: style
 
 = Git Hooks
+
+* Scripts disponibles dans le répertoire *.git/hooks*
+* Le nom du fichier doit respecter la phase que vous désirez manipuler
+* Plusieurs phases disponibles : *pre-commit*, *prepare-commit*, *commit-msg*, *post-rewrite*, *post-merge*, *pre-push*, ...
+* Attention le répertoire *.git* n'est pas versionné
+* Copie manuelle ou création d'un lien symbolique pour l'activer
+* La valeur de retour du script impactera le workflow GIT
+
+= Git Hooks
+
+[source,bash]
+---------------------------------------------------------------------
+#! /bin/bash
+
+declare -A PATTERNS;
+PATTERNS['TODO|FIXME']="Vous avez des (FIXME/TODO)";
+
+declare -a errors;
+
+for file in $(git diff --staged --name-only --diff-filter=ACM); do
+  for elem in ${!PATTERNS[*]} ; do
+    { git show :0:"$file" | grep -Eq ${elem}; } || continue;
+    errors+=("${PATTERNS[${elem}]} in ${file}…");
+  done
+done
+
+if [ ${#errors[@]} -ne 0 ]; then
+  exit 1
+fi
+---------------------------------------------------------------------
